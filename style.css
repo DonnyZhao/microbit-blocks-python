@@ -1,0 +1,408 @@
+/* Re-usable, generic rules */
+.hidden {
+  display: none !important;
+}
+
+.vbox {
+  display: flex;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+}
+
+.hbox {
+  display: flex;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+}
+
+.flex1 {
+  flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+}
+
+.flex3 {
+  flex: 3;
+  -webkit-flex: 3;
+  -ms-flex: 3;
+}
+
+.flexmax {
+  flex: 99999;
+  -webkit-flex: 99999;
+  -ms-flex: 99999;
+}
+
+/* Whole page layout */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body, input {
+  font-family: "Segoe UI Light", "Segoe UI", "Segoe WP Light", "Segoe WP",
+    "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "TD Symbols", sans-serif;
+  font-size: 1rem;
+}
+
+#main {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+#editor {
+  position: relative;
+  margin: 0;
+}
+
+#blocklyDiv {
+  position: absolute;  
+}
+
+.blocklyTreeLabel {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;    
+}
+
+/* Script info box */
+#script-box {
+  margin-right: 1rem;
+  max-width: 35rem;
+}
+
+#script-name {
+  font-size: 2.4rem;
+  line-height: 3rem !important;
+  height: 3rem !important;
+}
+
+#script-name, #script-wrapper, #script-icons {
+  background-color: transparent;
+  border: 0;
+  width: 100%;
+}
+
+#script-icons > *:not(:first-child) {
+  display: inline-block;
+  cursor: pointer;
+  border: 2px solid currentColor;
+  border-radius: 1em;
+  height: 1.5em;
+  width: 1.5em;
+  text-align: center;  
+}
+
+#script-icons > *:not(:first-child):hover {
+    background: rgba(100,100,100,0.3);        
+}
+
+#script-icons {
+  font-size: 1.5rem;
+}
+
+/* Popups */
+.popup {
+  width: 500px;
+  max-width: 100%;
+  border: 5px solid #666;
+  position: relative;
+  background-color: white;
+  z-index: 1;
+}
+
+.popup::after {
+  content: "";
+  display: block;
+  width: 0;
+
+  position: absolute;
+  top: -20px;
+  right: 10px;
+
+  border-style: solid;
+  border-width: 0 20px 20px;
+  border-color: #666 transparent;
+}
+
+.popup-inner {
+  padding: 1rem;
+}
+
+#popup-edit input {
+  border: 0;
+}
+
+/* Toolbox and commands */
+#merge-commands {
+  margin-left: 3em;
+}
+
+#merge-commands > * {
+  cursor: pointer;
+}
+
+#merge-commands > .label {
+  color: #a40000;
+  font-weight: bold;
+}
+
+#commands a {
+  text-align: center;
+  padding-right: .5em;
+  margin-right: 1em;
+}
+
+
+#toolbox {
+  padding: .5em;
+}
+
+#log {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.status {
+  white-space: pre-wrap;
+}
+
+.status:first-letter {
+  font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Symbola", sans-serif;
+}
+
+.status:not(:first-letter) {
+  font-weight: bold;
+}
+
+.status.error {
+  color: #a40000;
+}
+
+.status:not(.error) {
+  color: #4e9a06;
+}
+
+/* Buttons */
+.roundbutton {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  color: black;
+  text-decoration: none;
+}
+
+.roundsymbol {
+  vertical-align: middle;
+  width: 4rem;
+  height: 4rem;
+  border: .2rem solid black;
+  border-radius: 50%;
+  margin: .2rem;
+  margin-bottom: 0;
+  text-align: center;
+  font-size: 2.6rem;
+  line-height: 3.8rem;
+  padding: .2rem;
+  font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Symbola", sans-serif;
+}
+
+.roundsymbol:hover, .roundbutton .svg-wrapper:hover {
+    background: rgba(100,100,100,0.3);    
+}
+
+.svg-wrapper svg {
+  width: auto;
+  height: 5rem; /* total height of a regular roundsymbol */
+  width: 6rem; /* stupid IE */
+  display: block;
+}
+
+.roundlabel {
+  padding-top: .6rem;
+  font-size: 80%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Misc */
+a.command, a.command:visited {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a.command:hover {
+  text-decoration: underline;
+}
+
+/* Very low-height displays: hide the icons, just keep the text (e.g. "run").
+ * Hide script name, flatten icons. */
+@media (max-height: 600px) {
+  .roundbutton > .roundlabel {
+    display: none !important;    
+  }
+
+  #script-icons {
+    flex-direction: row !important;
+    -webkit-flex-direction: row !important;
+  }
+
+  input#script-name {
+    font-size: inherit !important;
+    height: inherit !important;
+    line-height: inherit !important;
+  }
+}
+
+/* Low-height displays or narrow displays: verticalize the status icons. */
+@media (max-height: 750px), (max-width: 800px) {
+  #script-box {
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    margin-right: 0;
+  }
+
+  #script-icons {
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    width: auto;
+    max-width: auto;
+  }
+
+  #script-icons > * {
+    padding: 0 !important;
+    width: 1.4rem;
+    text-align: center;
+  }
+}
+
+/* Low-height displays: icons inline; smaller script name. (750px is about the
+ * average content area height on a 900px high display.) */
+@media (max-height: 750px) {
+  #script-icons > * {
+    font-size: 1.1rem;
+  }
+
+  .roundbutton {
+    display: inline;
+  }
+
+  .svg-wrapper {
+    vertical-align: middle;
+  }
+
+  .svg-wrapper svg {
+    height: 2.8rem;
+    width: 4rem; /* stupid IE */
+  }
+
+  .roundsymbol {
+    width: 2rem;
+    height: 2rem;
+    line-height: 2.05rem;
+    font-size: 1.3rem;
+    margin: 0;
+  }
+
+  .roundlabel {
+    padding-top: 0;
+  }
+
+  .roundbutton > * {
+    display: inline-block;
+  }
+
+  #script-name {
+    font-size: 1.2rem;
+    line-height: 1.8rem !important;
+    height: 1.8rem !important;
+    font-weight: bold;
+  }
+}
+
+/* Very narrow displays: get rid of the script name and description */
+@media (max-width: 800px) {
+  #script-name {
+    display: none;
+  }
+}
+
+/* Narrow displays: shrink the toolbox */
+@media (max-width: 900px) {
+  .blocklyTreeRow {
+    padding-right: .3em !important;
+  }
+
+  .blocklyTreeIcon {
+    width: 6px !important;
+  }
+
+  .blocklyTreeLabel {
+    font-size: 12px !important;
+  }
+}
+
+/* Override a few blockly styles. */
+.blocklyError > .blocklyPath {
+  stroke: #d9301a !important;
+  stroke-width: 3px;
+}
+
+.blocklySvg {
+  background-color: transparent !important;
+}
+
+.blocklyToolboxDiv {
+  background-image: url(https://az742082.vo.msecnd.net/pub/prcwhomc) !important;
+}
+
+/* Animation for the compilation button */
+.compiling {
+  -webkit-animation-duration: 1.5s;
+  -webkit-animation-name: rotating;
+  -webkit-animation-iteration-count: infinite;
+  animation-duration: 1.5s;
+  animation-name: rotating;
+  animation-iteration-count: infinite;
+
+  color: #888;
+  border-color: #888;
+}
+
+@-webkit-keyframes rotating {
+  from {
+    -webkit-transform: rotate(0turn);
+  }
+
+  to {
+    -webkit-transform: rotate(1turn);
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+/* vim: set ts=2 sw=2 sts=2: */
