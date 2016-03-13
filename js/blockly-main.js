@@ -1953,28 +1953,28 @@ function compile(b, options) {
         setupPopups();
     }
     function doSave(force) {
-        if (force === void 0) { force = false; }
-        if (!dirty && !force) {
-            console.log('nothing to save...');
-            return;
-        }
-        var text = saveBlockly();
-        console.log("[saving] on top of: ", currentVersion);
-        post({
-            type: 3 /* Save */,
-            script: {
-                scriptText: text,
-                editorState: {
-                    lastSave: new Date()
-                },
-                baseSnapshot: currentVersion,
-                metadata: {
-                    name: getName(),
-                    comment: ''
-                }
-            },
-        });
-        dirty = false;
+//        if (force === void 0) { force = false; }
+//        if (!dirty && !force) {
+//            console.log('nothing to save...');
+//            return;
+//        }
+//        var text = saveBlockly();
+//        console.log("[saving] on top of: ", currentVersion);
+//        post({
+//            type: 3 /* Save */,
+//            script: {
+//                scriptText: text,
+//                editorState: {
+//                    lastSave: new Date()
+//                },
+//                baseSnapshot: currentVersion,
+//                metadata: {
+//                    name: getName(),
+//                    comment: ''
+//                }
+//            },
+//        });
+//        dirty = false;
     }
     function compileOrError(appendSuffix, msgSel) {
         var ast;
@@ -2042,16 +2042,17 @@ function compile(b, options) {
         delete libs["micro:bit radio"];
     }
     function doGraduate(msgSel) {
-        doSave();
-        var ast = compileOrError(true, msgSel);
-        if (!ast)
-            return;
-        post({
-            type: 9 /* Upgrade */,
-            ast: ast,
-            name: getName() + " (converted)",
-            libs: libs,
-        });
+//        doSave();
+//        var ast = compileOrError(true, msgSel);
+//        if (!ast)
+//            return;
+//        post({
+//            type: 9 /* Upgrade */,
+//            ast: ast,
+//            name: getName() + " (converted)",
+//            libs: libs,
+//        });
+        alert(Blockly.Python.workspaceToCode(Blockly.mainWorkspace));
     }
     function doCompile(msgSel) {
         doSave();
