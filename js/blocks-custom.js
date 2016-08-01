@@ -1,3 +1,12 @@
+/**
+ * This file is part of the Touchdevelop project:
+ * https://github.com/Microsoft/TouchDevelop/blob/c1a8ac1705b8a8a803a62520657527240c1b53b7/www/blockly/blocks-custom.js
+ *
+ * Copyright (c) 2016 Microsoft
+ * Licensed under the MIT license, a copy which can be found in:
+ *   https://github.com/Microsoft/TouchDevelop/blob/master/LICENSE
+ */
+
 'use strict';
 
 goog.provide('Blockly.Blocks.device');

@@ -1,3 +1,14 @@
+/**
+ * This file is part of the Touchdevelop project:
+ * https://github.com/Microsoft/TouchDevelop/blob/c1a8ac1705b8a8a803a62520657527240c1b53b7/www/blockly/blocks-custom.js
+ *
+ * Copyright (c) 2016 Microsoft
+ * Licensed under the MIT license, a copy which can be found in:
+ *   https://github.com/Microsoft/TouchDevelop/blob/master/LICENSE
+ *
+ * It has been modified to work offline with a simple Blockly instance.
+ */
+
 var TDev;
 (function (TDev) {
     var External;
@@ -1862,17 +1873,17 @@ function compile(b, options) {
         //var state = message.script.editorState;
         var blocklyArea = document.getElementById('editor');
         var blocklyDiv = document.getElementById('blocklyDiv');
-        var blocklyToolbox = document.getElementById("blockly-toolbox");
-        if (!dbg) {
-            var cats = blocklyToolbox.getElementsByTagName("category");
-            for (var i = 0; i < cats.length; ++i) {
-                var catEl = cats.item(i);
-                if (catEl.getAttribute("debug"))
-                    catEl.parentElement.removeChild(catEl);
-            }
-        }
+        //var blocklyToolbox = document.getElementById("blockly-toolbox");
+        //if (!dbg) {
+        //    var cats = blocklyToolbox.getElementsByTagName("category");
+        //    for (var i = 0; i < cats.length; ++i) {
+        //        var catEl = cats.item(i);
+        //        if (catEl.getAttribute("debug"))
+        //            catEl.parentElement.removeChild(catEl);
+        //    }
+        //}
         var workspace = Blockly.inject(blocklyDiv, {
-            toolbox: blocklyToolbox,
+            toolbox: microbitToolbox,
             scrollbars: true,
             media: "vendor/blockly/media/",
             zoom: {
